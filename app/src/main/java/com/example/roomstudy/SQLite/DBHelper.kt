@@ -1,4 +1,4 @@
-package com.example.roomstudy
+package com.example.roomstudy.SQLite
 
 import android.content.ContentValues
 import android.content.Context
@@ -29,7 +29,7 @@ class DBHelper(context: Context?): SQLiteOpenHelper(context, DATABASE_NAME, null
         db?.let {
             val result = it.execSQL(CREATE_TABLE) //쿼리 실행
             if(it.isOpen){ //DB가 열려있으면
-                it.close() //DB를 닫는다.
+                //it.close() //DB를 닫는다.
             }
             Log.d(TEST, result.toString())
         }
@@ -49,7 +49,7 @@ class DBHelper(context: Context?): SQLiteOpenHelper(context, DATABASE_NAME, null
         val values = ContentValues().apply { put(TITLE, title) }
 
         val result = db.insert(TABLE_NAME, null, values)
-        db.close() //db를 닫는다.
+        //db.close() //db를 닫는다.
         Log.d(TEST, result.toString())
     }
 
@@ -59,7 +59,7 @@ class DBHelper(context: Context?): SQLiteOpenHelper(context, DATABASE_NAME, null
         val query = "SELECT * FROM $TABLE_NAME"
 
         val cursor = db.rawQuery(query, null) //모든 값이 반환되지는 않고, 커서 형태로 값이 반환된다.
-        db.close() //db를 닫는다.
+        //db.close() //db를 닫는다.
         val result = ArrayList<String>()
 
         //컬럼0: ID, 컬럼1: Title
@@ -72,27 +72,27 @@ class DBHelper(context: Context?): SQLiteOpenHelper(context, DATABASE_NAME, null
         return result
     }
 
-    fun update(title: String) {
+    fun update(title: String, update: String) {
         val db = this.writableDatabase
-        val values = ContentValues().apply { put(TITLE, title) } //업데이트할 컬럼과 값을 설정한다.
+        val values = ContentValues().apply { put(TITLE, update) } //업데이트할 컬럼과 값을 설정한다.
 
         val whereClause = "$TITLE LIKE ?" //쿼리의 Where 절을 설정한다.
-        val whereArgs = arrayOf<String>() //Where 절의 ?에 들어갈 args 들
+        val whereArgs = arrayOf(title) //Where 절의 ?에 들어갈 args 들
 
         val count = db.update(TABLE_NAME, values, whereClause, whereArgs)
-        db.close() //db를 닫는다.
+        //db.close() //db를 닫는다.
         Log.d(TEST, count.toString())
     }
 
     fun delete(title: String) {
         val db = this.writableDatabase
 
-        val whereClause = "$TABLE_NAME LIKE ?" //쿼리의 Where 절을 설정한다.
+        val whereClause = "$TITLE LIKE ?" //쿼리의 Where 절을 설정한다.
         val whereArgs = arrayOf<String>(title) //Where 절의 ?에 들어갈 args 들
 
         //테이블의 해당 값을 삭제한다.
         val count = db.delete(TABLE_NAME, whereClause, whereArgs)
-        db.close() //db를 닫는다.
+        //db.close() //db를 닫는다.
         Log.d(TEST, count.toString())
     }
 }

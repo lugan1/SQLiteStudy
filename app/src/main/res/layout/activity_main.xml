@@ -18,6 +18,13 @@
             android:contentDescription="테이블에 입력할 값"
             android:hint="테이블에 입력할 값"/>
 
+        <EditText
+            android:id="@+id/inputArea2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="테이블에 업데이트할 값"
+            android:hint="테이블에 업데이트할 값"/>
+
         <Button
             android:id="@+id/insertButton"
             android:layout_width="wrap_content"
@@ -46,6 +53,27 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/roomInsert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="room Insert"/>
+        <Button
+            android:id="@+id/roomSelect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="room select"/>
+        <Button
+            android:id="@+id/roomUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="room update"/>
+        <Button
+            android:id="@+id/roomDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="room delete"/>
 
     </LinearLayout>
 
